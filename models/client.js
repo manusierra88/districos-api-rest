@@ -12,6 +12,9 @@ const ClientSchema = Schema({
     companyPhone:{
         type: Numbre
     },
+    companyAdress:{
+        type:String
+    },
     orders:[{
         type: Schema.Types.ObjectId,
         ref: 'Order'
