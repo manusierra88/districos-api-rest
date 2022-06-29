@@ -3,7 +3,7 @@ const { response, request } = require("express")
 const Product = require('../models/product');
 
 const postProduct = async (req = request, res = response) => {
-    const { name, price, stock } = req.body;
+    const { name, cost, stock, salePrice } = req.body;
 
     const productDB = await Product.findOne({ name });
     if (productDB) {
@@ -13,7 +13,7 @@ const postProduct = async (req = request, res = response) => {
         })
     }
 
-    const data = { name, price, stock };
+    const data = { name, cost, stock, salePrice };
 
     const product = new Product(data);
 

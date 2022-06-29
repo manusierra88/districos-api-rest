@@ -6,9 +6,12 @@ const ProductSchema = Schema({
         type: String,
         required: true
     },
-    price:{
+    cost:{
         type: Number,
         required: true
+    },
+    salePrice:{
+        type:Number,
     },
     avialable:{
         type: Boolean,

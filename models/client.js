@@ -10,7 +10,7 @@ const ClientSchema = Schema({
         required: [true, 'Ingrese el nombre de la empresa' ]
     },
     companyPhone:{
-        type: Numbre
+        type: Number
     },
     companyAdress:{
         type:String

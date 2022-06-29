@@ -3,20 +3,14 @@ const {Schema, model} = require('mongoose');
 
 const OrderSchema = Schema({
     client:{
-        type: Schema.Types.ObjectId,
-        ref: 'Client',
-        required: true
+        type:Schema.Types.ObjectId,
+        ref: 'Client'
     },
-    products:[{
-        type: Schema.Types.ObjectId,
-        ref:'Product',
-        required: true,
-        quantity:{
-            type:Number,
-            default: 1
-        }
+    product:[{
+       name:String,
+       quantity: Number
     }],
-    price:{
+    totalPrice:{
         type:Number
     },
     payed:{
