@@ -13,7 +13,7 @@ class Server {
         this.userPath = '/api/user';
         this.productPath= '/api/product';
         this.orderPath = '/api/order';
-        this.clientPath = '/api/client';
+        
     
 
 
@@ -40,13 +40,13 @@ class Server {
         this.app.use(this.authPath,require('../routes/auth'));
         this.app.use(this.productPath, require('../routes/product'));
         this.app.use(this.orderPath, require('../routes/order'));
-        this.app.use(this.clientPath, require('../routes/client'));
+       
     }
 
 
     listen(){
         this.app.listen(this.port,()=>{
-            console.log('server running on port'+ this.port)
+            console.log('server running on port '+ this.port)
         })
     }
 }

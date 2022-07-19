@@ -46,6 +46,24 @@ const orderGet = async(req=request, res= response)=>{
     })
 }
 
+const orderGetbyId =async(req= request, res= response)=>{
+    const {id} = req.params
+
+    const order = await Order.findById(id).populate('client',{
+        product:1,
+        company:1,
+        _id:0
+    })
+    if(!order){
+        return res.status(404).json({
+            ok:false,
+            msg:'La orden/pedido no se encuentra en la base de datos'
+        })
+    }
+
+    res.status(200).json(order);
+}
+
 
 
 
@@ -53,4 +71,5 @@ const orderGet = async(req=request, res= response)=>{
 module.exports ={
     orderCreate,
     orderGet,
+    orderGetbyId,
 }

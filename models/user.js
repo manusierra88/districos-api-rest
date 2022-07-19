@@ -7,7 +7,8 @@ const UserSchema = Schema({
     },
     email:{
         type: String,
-        required:[true, 'El email es un campo obligatorio']
+        required:[true, 'El email es un campo obligatorio'],
+        
     },
     password:{
         type: String,
