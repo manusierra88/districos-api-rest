@@ -8,7 +8,7 @@ const UserSchema = Schema({
     email:{
         type: String,
         required:[true, 'El email es un campo obligatorio'],
-        
+        unique: true   
     },
     password:{
         type: String,
@@ -24,6 +24,10 @@ const UserSchema = Schema({
         type: Boolean,
         default: true
     },
+    order:{
+        type: Schema.Types.ObjectId,
+        ref: 'Order',
+    }
     
 })
 

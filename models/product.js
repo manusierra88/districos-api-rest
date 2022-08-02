@@ -8,7 +8,8 @@ const ProductSchema = Schema({
     },
     cost:{
         type: Number,
-        required: true
+        required: true,
+        default: 1
     },
     salePrice:{
         type:Number,
