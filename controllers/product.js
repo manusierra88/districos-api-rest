@@ -57,11 +57,32 @@ const getProduct = async (req, res)=>{
     })
 }
 
+const deleteProduct = async (req, res)=>{
+    const id = req.params.id;
+
+    const product = Product.findById(id);
+
+    if(!product){
+        res.status(404).json({
+            ok: false,
+            msg:' Producto no se pudo encontrar en la base de datos '
+        })
+    }
+
+    await Product.findByIdAndDelete(id, {new:true});
+
+    res.status(200).json({
+        ok:true,
+        msg:'Producto borrado'
+    })
+}
+
 
 
 
 module.exports = {
     postProduct,
     putProducto,
-    getProduct
+    getProduct,
+    deleteProduct
 }
