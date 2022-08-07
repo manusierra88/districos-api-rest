@@ -69,7 +69,7 @@ const deleteProduct = async (req, res)=>{
         })
     }
 
-    await Product.findByIdAndDelete(id, {new:true});
+    await Product.findByIdAndDelete(id);
 
     res.status(200).json({
         ok:true,
