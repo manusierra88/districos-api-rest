@@ -13,6 +13,7 @@ class Server {
         this.userPath = '/api/user';
         this.productPath= '/api/product';
         this.orderPath = '/api/order';
+        this.cartPath= '/api/cart'
         
     
 
@@ -40,6 +41,7 @@ class Server {
         this.app.use(this.authPath,require('../routes/auth'));
         this.app.use(this.productPath, require('../routes/product'));
         this.app.use(this.orderPath, require('../routes/order'));
+        this.app.use(this.cartPath, require('../routes/cart'));
        
     }
 

@@ -1,36 +1,35 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 
 const OrderSchema = Schema({
-    user:{
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    products:[{
-        productID:{
+    products: [{
+        productID: {
             type: Schema.Types.ObjectId,
             ref: 'Product'
         },
-        name:{
+        name: {
             type: String,
         },
-        quantity:{
+        quantity: {
             type: Number,
             default: 1,
             min: 1
         },
-        price:{
-            type: Number
-        }
+
     }],
-    bill:{
+    bill: {
         type: Number,
         default: 0,
-        
+
     }
-    
-    
-})
+
+},
+    { timestamps: true }
+)
 
 module.exports = model('Order', OrderSchema)
