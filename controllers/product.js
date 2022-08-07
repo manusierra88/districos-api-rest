@@ -49,9 +49,19 @@ const putProducto = async(req=request, res=response)=>{
 }
 
 
+const getProduct = async (req, res)=>{
+    const products = await Product.find();
+    res.status(200).json({
+        ok:true,
+        products
+    })
+}
+
+
 
 
 module.exports = {
     postProduct,
-    putProducto
+    putProducto,
+    getProduct
 }

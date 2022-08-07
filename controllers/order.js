@@ -1,6 +1,6 @@
 const { request, response } = require('express');
 const Order = require('../models/order');
-const Client = require('../models/client');
+
 const Product = require('../models/product');
 const product = require('../models/product');
 

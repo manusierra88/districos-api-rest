@@ -13,7 +13,7 @@ class Server {
         this.userPath = '/api/user';
         this.productPath= '/api/product';
         this.orderPath = '/api/order';
-        this.cartPath= '/api/cart'
+        this.cartPath= '/api/cart';
         
     
 
