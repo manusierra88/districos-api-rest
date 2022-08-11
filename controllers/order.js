@@ -50,7 +50,45 @@ const getOrders = async (req=request, res=response)=>{
 }
 
 
+const putOrder = async (req,res)=>{
+    const orderID = req.params.id;
+    const order = await Order.findById(orderID);
+    const {...info} = req.body;
 
+    if(!order){
+        return res.status(404).json({
+            ok:false,
+            msg:'Orden/pedido no econtrado'
+        });
+    }
+
+    const updatedOrder = await Order.findByIdAndUpdate(orderID, {info}, {new:true});
+
+    return res.status(200).json({
+        ok:true,
+        updatedOrder
+    })
+
+
+}
+
+const getOrderByID = async (req, res) =>{
+    const orderID = req.params.id;
+
+
+    const order = await Order.findById({orderID}).populate('user',{products:1,name:1, _id:0});
+    if(!order){
+        return res.status(404).json({
+            ok:false,
+            msg:'Orden/pedido no econtrado'
+        })
+    }
+
+    return res.status(200).json({
+        ok:true,
+        order,
+    })
+}
 
 
 //const orderCreate = async(req=request, res=response)=>{
@@ -117,4 +155,6 @@ const getOrders = async (req=request, res=response)=>{
 module.exports ={
     postOrder,
     getOrders,
+    getOrderByID,
+    putOrder,
 }
