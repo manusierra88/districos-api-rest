@@ -1,7 +1,7 @@
 const {Router}= require('express');
 
 const {check}= require('express-validator');
-const { orderCreate, orderGet, orderGetbyId, postOrder, getOrders, getOrderByID, putOrder } = require('../controllers/order');
+const { orderCreate, orderGet, orderGetbyId, postOrder, getOrders, getOrderByID, putOrder, deleteOrder } = require('../controllers/order');
 const validarCampos = require('../middlewares/validarCampos');
 
 const validateJWT= require('../middlewares/validateJWT');
@@ -20,6 +20,8 @@ router.get('/', getOrders)
 router.get('/:id',[validateJWT,validarCampos] ,getOrderByID)
 
 router.put('/:id',[validateJWT,validarCampos],putOrder)
+
+router.delete('/:id',[validateJWT,validarCampos],deleteOrder)
 
 
 module.exports = router

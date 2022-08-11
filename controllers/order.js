@@ -90,6 +90,26 @@ const getOrderByID = async (req, res) =>{
     })
 }
 
+const deleteOrder = async (req, res)=>{
+    const orderID = req.params.id;
+
+    const order = await Order.findById({orderID});
+
+    if(!order){
+        return res.status(404).json({
+            ok:false,
+            msg:'Orden/pedido no encontrado'
+        })
+    }
+
+    await Order.findOneAndDelete(order);
+
+    return res.status(200).json({
+        ok:true,
+        msg:'Orden/pedido borrado exitosamente'
+    });
+}
+
 
 //const orderCreate = async(req=request, res=response)=>{
 //     const{clientID, product, quantity} = req.body;
@@ -157,4 +177,5 @@ module.exports ={
     getOrders,
     getOrderByID,
     putOrder,
+    deleteOrder
 }
