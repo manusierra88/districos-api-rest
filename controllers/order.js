@@ -6,8 +6,47 @@ const Cart = require('../models/cart');
 const Product = require('../models/product');
 
 
-const postOrder = async(req, res)=>{
-    res.send('hello');
+const postOrder = async(req=request, res=response)=>{
+   // const userID = req.user.id;
+    const {userID,products,bill} = req.body;
+    const user = await User.findById(userID);
+    try {
+        
+        if(!user){
+            res.status(404).json({
+                ok:false,
+                msg: 'Usuario sin autorización'
+            })
+        }
+
+        const order = new Order({user:user._id,products,bill});
+
+        user.order = user.order.concat(order._id);
+        user.save();
+
+        await order.save();
+
+        res.status(200).json({
+            ok:true,
+            order
+        })
+
+    } catch (error) {
+        res.status(400).json(error)
+    }
+    
+}
+
+const getOrders = async (req=request, res=response)=>{
+    const [orders] = await Order.find({}).populate('user',{
+        products:1,
+        name:1,
+        _id:0
+    });
+    res.status(200).json({
+        ok:true,
+        orders
+    })
 }
 
 
@@ -76,5 +115,6 @@ const postOrder = async(req, res)=>{
 
 
 module.exports ={
-    postOrder
+    postOrder,
+    getOrders,
 }

@@ -1,9 +1,10 @@
 const {Router}= require('express');
 
 const {check}= require('express-validator');
-const { orderCreate, orderGet, orderGetbyId, postOrder } = require('../controllers/order');
+const { orderCreate, orderGet, orderGetbyId, postOrder, getOrders } = require('../controllers/order');
+const validarCampos = require('../middlewares/validarCampos');
 
-
+const validateJWT= require('../middlewares/validateJWT');
 const router = Router();
 
 
@@ -12,7 +13,9 @@ const router = Router();
 // router.get('/', orderGet);
 
 // router.get('/:id',orderGetbyId)
-router.post('/', postOrder)
+router.post('/',validateJWT, postOrder)
+
+router.get('/', getOrders)
 
 
 module.exports = router
