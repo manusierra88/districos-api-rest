@@ -20,9 +20,18 @@ const userPost = async (req = request, res = response) => {
 
 }
 
+const getUsers = async(req, res)=> {
+    const users = await User.find({});
+    res.status(200).json({
+        ok:true,
+        users
+    })
+}
+
 
 
 
 module.exports = {
     userPost,
+    getUsers,
 }
