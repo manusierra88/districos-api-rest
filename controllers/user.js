@@ -53,6 +53,24 @@ const getUserByID = async (req, res) => {
 
 }
 
+const putUser = async (req, res) =>{
+    const user = req.user;
+    const id = req.params.id;
+    const {...data} = req.body;
+    
+    const userResquest = await User.findById(id);
+
+    if(user !== userResquest){
+        res.status(404).json({
+            ok:false,
+            msg:'Usuario sin autorizacion para ralizar dicha operacion'
+        });
+    };
+
+    const updatedUser = await User.findByIdAndUpdate(id,{...data}, {new:true})
+
+}
+//private route with JWT to get the user from the request.
 
 
 
@@ -60,4 +78,5 @@ module.exports = {
     userPost,
     getUsers,
     getUserByID,
+    putUser
 }

@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const { userPost, getUsers, getUserByID } = require('../controllers/user');
+const { userPost, getUsers, getUserByID, putUser } = require('../controllers/user');
 const { check } = require('express-validator');
 const { registredEmail } = require('../helpers/dbValidators');
 const validarCampos = require('../middlewares/validarCampos');
+const validateJWT = require('../middlewares/validateJWT');
 
 
 const router = Router();
@@ -20,6 +21,8 @@ router.post('/', [
 router.get('/', getUsers);
 
 router.get('/:id', getUserByID);
+
+router.put('/:id',[validateJWT,validarCampos],putUser)
 
 
 
