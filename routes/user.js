@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { userPost, getUsers } = require('../controllers/user');
+const { userPost, getUsers, getUserByID } = require('../controllers/user');
 const { check } = require('express-validator');
 const { registredEmail } = require('../helpers/dbValidators');
 const validarCampos = require('../middlewares/validarCampos');
@@ -17,7 +17,9 @@ router.post('/', [
     validarCampos], userPost);
 
 
-router.get('/', getUsers)
+router.get('/', getUsers);
+
+router.get('/:id', getUserByID);
 
 
 
