@@ -38,7 +38,7 @@ const postOrder = async(req=request, res=response)=>{
 }
 
 const getOrders = async (req=request, res=response)=>{
-    const [orders] = await Order.find({}).populate('user',{
+    const [orders] = await Order.find({}).populate('user','product',{
         products:1,
         name:1,
         _id:0
