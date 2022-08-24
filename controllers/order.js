@@ -41,7 +41,7 @@ const getOrders = async (req=request, res=response)=>{
     const [orders] = await Order.find({}).populate('user','product',{
         products:1,
         name:1,
-        _id:0
+        uid:0
     });
     res.status(200).json({
         ok:true,
