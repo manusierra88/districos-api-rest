@@ -43,7 +43,7 @@ const putProducto = async(req=request, res=response)=>{
     const modifiedProduct = await Product.findByIdAndUpdate(id,{ purchase: Date.now(), ...data},{new:true});
     res.status(201).json({
         ok:true,
-        producto: modifiedProduct
+        modifiedProduct
     })
 
 }
