@@ -4,6 +4,7 @@ const { check } = require('express-validator');
 const { registredEmail } = require('../helpers/dbValidators');
 const validarCampos = require('../middlewares/validarCampos');
 const validateJWT = require('../middlewares/validateJWT');
+const isAdmin = require('../middlewares/validateAdminRole');
 
 
 const router = Router();
@@ -18,7 +19,7 @@ router.post('/', [
     validarCampos], userPost);
 
 
-router.get('/', getUsers);
+router.get('/',[validateJWT,isAdmin,validarCampos], getUsers);
 
 router.get('/:id', getUserByID);
 

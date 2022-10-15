@@ -12,14 +12,14 @@ const validateJWT = async(req=request, res, next)=>{
     }
 
     try {
-        const {uid} = jwt.verify(token, process.env.TOKEN_KEY)
-        const user = await User.findById(uid);
+        const decoded = jwt.verify(token, process.env.TOKEN_KEY)
+        const user = await User.findById(decoded.uid);
 
         req.user= user;
         next();
     } catch (error) {
         console.log(error);
-        res.status(401).json({
+         return res.status(401).json({
             ok:false,
             msg:'Token no valido'
         })
