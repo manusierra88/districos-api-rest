@@ -22,7 +22,7 @@ const userPost = async (req = request, res = response) => {
 }
 //private route, admin access
 const getUsers = async (req, res) => {
-    const users = await User.find({});
+    const users = await User.find({}).populate('order');
     res.status(200).json({
         ok: true,
         users

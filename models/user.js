@@ -38,11 +38,11 @@ const UserSchema = Schema({
     ],
     address:{
         type : String,
-        required: [true, 'Debe ingresar una dirección']
+       
     },
     phone:{
         type: String,
-        required:[true, 'Ingrese su número de teléfono']
+        
     }
 
 })
