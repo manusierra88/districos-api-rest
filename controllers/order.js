@@ -28,11 +28,32 @@ const postOrder = async(req=request, res=response)=>{
         
 
         await order.save();
+        
+        const prodID = products.map(p=>p.productID);
+        
+        const stoerdProd= prodID.forEach(async id => {
+
+            await Product.findById(id);
+        });
+
+        console.log(stoerdProd);
+       
+        // const orderQuantity = products.quantity[prodIndex];
+        
+        // const storedProd = await Product.findById(prodID[prodIndex])
+
+        // const newStock = (storedProd.stock - orderQuantity[prodIndex]);
+
+        // const updatedStock = Product.findByIdAndUpdate(prodID[prodIndex], {stock: newStock} ,{new:true})
+
+
+        
 
 
         res.status(200).json({
             ok:true,
-            order
+            order,
+            updatedStock
         })
 
     } catch (error) {
