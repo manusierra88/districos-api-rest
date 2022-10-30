@@ -20,9 +20,28 @@ const getCarts = async(req, res=response)=>{
     
 }
 
+const getCartbyId = async(req, res)=>{
+    const cartOwner = req.params.uid
+
+    const cart = await User.findById({cartOwner});
+
+    if(!cart){
+        return res.status(404).json({
+            ok:false,
+            msg: 'Cart not found.'
+        })
+    }
+
+    res.status(200).json({
+        ok:true,
+        cart
+    });
+}
+
 
 module.exports={
-    getCarts
+    getCarts,
+    getCartbyId
 }
 
 

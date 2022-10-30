@@ -3,9 +3,9 @@ const { request, response } = require("express")
 
 const validateOwnerOrAdmin = async (req=request, res=response, next)=>{
 
-    const isOwner = req.params.id;
+    const isOwner = req.params.uid;
 
-    const reqRol = req.params.rol;
+    const reqRol = req.user.rol;
 
     if(!isOwner===req.user.uid|!reqRol==='ADMIN_ROL'){
 
