@@ -39,6 +39,16 @@ const getCartbyId = async(req, res)=>{
 }
 
 
+const postCart = async (req, res)=>{
+    const user = req.user.uid;
+    const cart = req.params.id;
+    const userDB = await User.findById({user});
+    const cartDB = await Cart.findById({cart});
+
+    
+}
+
+
 module.exports={
     getCarts,
     getCartbyId
